@@ -1,0 +1,56 @@
+﻿@page
+@using RazorSol.Models
+@model RazorSol.Pages.CartModel
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+ <ul class="breadcrumb">
+    <li><a asp-page="index">Home</a> <span class="divider">/</span></li>
+    <li class="active"> SHOPPING CART</li>
+</ul>
+<h3> SHOPPING CART [ <small>@Model.cart.Count Item(s) </small>]<a asp-page="index"class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>
+<hr class="soft" />
+<form method="post" asp-page="cart">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Quantity/Update<button type="submit" class="btn"><i class="icon-save"></i>
+                 Update</button></th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.cart)
+        {
+        
+            <tr>
+                <td> <img width="60" src="~/product/@item.product.Photo" alt=""/></td>
+                <td>@item.product.Name<br/></td>
+                <td>
+                    <div class="input-append">
+                        <input class="span1" name="quantity" style="max-width: 34px" placeholder="1" 
+                               size="16" type="number" min="1" value="@item.Quantity">
+                        <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" 
+                           class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+                    </div>
+                </td>
+                <td>$@item.product.Price</td>
+                <td>$@(item.product.Price* item.Quantity)</td>
+
+            </tr>
+        }
+        <tr>
+            <td colspan="4" style="text-align: right"><strong>TOTAL=</strong></td>
+            <td class="label label-important" style="display: block"> <strong> $@Model.Total </strong></td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+<a asp-page="index" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+<a asp-page="cart" asp-page-handler="checkout" class="btn btn-large pull-right">Checkout <i class="icon-arrow-right"></i></a>
+

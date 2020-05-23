@@ -1,0 +1,27 @@
+﻿<form class="form-inline navbar-search" method="get" asp-page="search" >
+    <input id="srchFld" class="srchTxt" name="Keyword" type="text" style="padding-left: 30px" />
+    <select class="srchTxt" name="CategoryId">
+        <option value="-1">All</option>
+        @foreach (var category in ViewBag.categories)
+        {
+            if (category.InverseParent != null)
+            {
+    <optgroup label="@category.Name">
+        @foreach (var subCategory in category.InverseParent)
+        {
+            <option value="@subCategory.Id">@subCategory.Name </option>
+
+        }
+    </optgroup>
+            }
+            else
+            {
+                <option value="@category.Id">@category.Name </option>  
+            }
+           
+        }
+
+       
+    </select>
+    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+</form>

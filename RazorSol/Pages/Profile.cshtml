@@ -1,0 +1,69 @@
+﻿@page
+@model RazorSol.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a asp-page="index">Home</a> <span class="divider">/</span></li>
+    <li class="active">Register</li>
+</ul>
+<h3> Change Profile</h3>
+<hr class="soft" />
+
+<div class="row">
+
+    <div class="span1"> &nbsp;</div>
+    <div class="span4">
+        <div class="well">
+
+            <form method="post" asp-page="profile">
+                <div class="control-group">
+                    <label class="control-label" for="username">Username</label>
+                    <div class="controls">
+                        <input class="span3" type="text" id="username" asp-for="@Model.Account.UserName" readonly="readonly">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword1">Password</label>
+                    <div class="controls">
+                        <input type="password" class="span3" id="inputPassword1" placeholder="Password" asp-for="@Model.Account.Password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="fullName">Full Name</label>
+                    <div class="controls">
+                        <input class="span3" type="text" id="fullName" asp-for="@Model.Account.FullName">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                        <input class="span3" type="text" id="email" asp-for="@Model.Account.Email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="address">Address</label>
+                    <div class="controls">
+                        <input class="span3" type="text" id="address" asp-for="@Model.Account.Address">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <div class="controls">
+                        <input class="span3" type="text" id="phone" asp-for="@Model.Account.Phone">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn">Save</button>
+                        <input type="hidden" asp-for="@Model.Account.Id"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
